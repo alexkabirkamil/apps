@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: ftts-multiplayer
+    runtime: node
+    plan: free
+    numInstances: 1
+    buildCommand: npx --yes pnpm@11.25.0 install --frozen-lockfile --prod
+    startCommand: node server.js
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: NODE_ENV
+        value: production
+      - key: PUBLIC_ORIGIN
+        sync: false
